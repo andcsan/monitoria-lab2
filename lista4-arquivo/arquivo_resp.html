@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>UFGD - Laborátorio de Programação 2</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.8.0/styles/default.min.css">
+
+    <style media="screen">
+        body {
+            font: 18px Cambria, Arial, sans-serif;
+        }
+        code {
+            font-size: 12px;
+        }
+        header.main-header {
+            text-align: center;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        article {
+            overflow: auto;
+            border-bottom: 1px solid #d0d0d0;
+            margin: 5px;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .wrapper {
+            margin: auto;
+            width: 80%;
+            padding: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function changeDisplay(divid, btid) {
+            var display = document.getElementById(divid).style.display;
+            if(display == "none") {
+                document.getElementById(divid).style.display = "block";
+                document.getElementById(btid).innerHTML = "Ocultar solução";
+            } else {
+                document.getElementById(divid).style.display = "none";
+                document.getElementById(btid).innerHTML = "Exibir solução";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <h1>Universidade Federal da Grande Dourados</h1>
+            <h4>Sistemas de Informação</h4>
+            <h4>Laboratório de Programação II</h4>
+            <h5>Programa de Monitoria</h5>
+        </header>
+
+        <article>
+            <h3>Respostas Lista 4 - Arquivos</h3>
+            <p>1.</p>
+<pre><code class="hljs cpp">#include &ltstdio.h>
+
+int main() {
+
+    FILE *entrada;
+    FILE *saida;
+
+    int numero;
+    int soma = 0;
+
+    entrada = fopen("entrada.txt", "r");
+    saida = fopen("saida.txt", "w");
+
+    if (saida == NULL || entrada == NULL) {
+        printf("Erro ao acessar arquivos");
+        return -1;
+    }
+
+    do {
+        fscanf(entrada, " %d", &ampnumero);
+        soma += numero;
+    } while (!feof(entrada));
+
+    fprintf(saida, "%d\n", soma);
+
+    fclose(entrada);
+    fclose(saida);
+
+    return 0;
+}
+</code></pre>
+
+            <p>2.</p>
+<pre><code class="hljs cpp">#include &ampstdio.h>
+
+int fibonacci(int n) {
+    if (n == 0) {
+        return 0;
+    }
+    if (n == 1 || n == 2) {
+        return 1;
+    }
+    else {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
+
+int main() {
+
+    FILE *saida;
+    int n;
+    int i;
+
+    saida = fopen("fibonacci.txt", "w");
+
+    if (saida == NULL) {
+        printf("Não foi possível criar o arquivo");
+    }
+
+    printf("Informe até qual termo da sequência deseja inserir no arquivo: ");
+    scanf("%d", &ampn);
+
+    for (i = 0; i &lt= n; i++) {
+        fprintf(saida, "%d\n", fibonacci(i));
+    }
+
+    fclose(saida);
+
+    return 0;
+}
+</code></pre>
+
+            <p>3.</p>
+<pre><code class="hljs cpp">#include &ltstdio.h>
+#include &ltctype.h>
+
+char cap(char c) {
+    if (isalpha(c)) {
+        return toupper(c);
+    }
+    else {
+        return c;
+    }
+}
+
+int main() {
+
+    FILE *arquivo;
+    char caractere[1000];
+    int i, j;
+
+    arquivo = fopen("texto.txt", "r+");
+
+    if (arquivo == NULL) {
+        printf("Não foi possível ler o arquivo");
+    }
+
+    i = 0;
+    do {
+        fscanf(arquivo, "%c", &ampcaractere[i]);
+        caractere[i] = cap(caractere[i]);
+        i++;
+    } while (!feof(arquivo));
+
+    rewind(arquivo);
+
+    for (j = 0; j &lt i - 1; j++) {
+        printf("%c", caractere[j]);
+        fprintf(arquivo, "%c", caractere[j]);
+    }
+
+    fclose(arquivo);
+
+    return 0;
+}
+</code></pre>
+
+            <p>4.</p>
+<pre><code class="hljs cpp">#include &ltstdio.h>
+#include &ltstring.h>
+
+int main() {
+
+    FILE *arquivo;
+
+    char nome[50];
+    float nota1, nota2;
+
+    arquivo = fopen("notas.txt", "w");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo");
+        return 1;
+    }
+
+    while (1) {
+        scanf(" %s", nome);
+
+        if (strcmp(nome, "0") == 0) {
+            break;
+        }
+
+        scanf(" %f %f", &ampnota1, &ampnota2);
+
+        if (nota1 &lt 0 || nota1 &gt 10 || nota2 &lt 0 || nota2 &gt 10) {
+            break;
+        }
+
+        fprintf(arquivo, "%s %.2f %.2f %.2f\n", nome, nota1, nota2, (nota1 + nota2) / 2);
+        fflush(stdin);
+    }
+
+    fclose(arquivo);
+
+    return 0;
+}
+</code></pre>
+
+            <p>5.</p>
+<pre><code class="hljs cpp">#include &ltstdio.h>
+#include &ltstring.h>
+
+int main() {
+
+    FILE *arquivo;
+
+    long size; // Posição do cursor no arquivo
+
+    char nome[50];
+    float nota1;
+    float nota2;
+
+    char nome_p[50];
+    float nota1_p;
+    float nota2_p;
+    float media_p;
+
+    arquivo = fopen("notas.txt", "r+");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo\n");
+        return 1;
+    }
+
+    while (1) {
+        rewind(arquivo); // Retorna a posição do cursor para o início do arquivo
+        printf("Informe o nome do aluno que deseja atualizar a nota: ");
+        scanf(" %s", nome);
+
+        if (strcmp(nome, "0") == 0) {
+            break;
+        }
+
+        do {
+            size = ftell(arquivo); // Guarda a posição do cursor no arquivo antes da leitura
+            fscanf(arquivo, "%s %f %f %f", nome_p, &ampnota1_p, &ampnota2_p, &ampmedia_p);
+
+            // Se aluno foi econtrado
+            if(strcmp(nome_p, nome) == 0) {
+                printf("\nAluno %s encontrado!\n");
+                printf("Nota 1: %.2f, Nota 2: %.2f, Media: %.2f\n", nota1_p, nota2_p, media_p);
+                printf("Informe as novas notas para atualizar: ");
+                scanf(" %f %f", &ampnota1, &ampnota2);
+
+                fseek(arquivo, size+2, SEEK_SET); // size+2 devido à quebra de linha
+
+                fprintf(arquivo, "%s %.2f %.2f %.2f", nome, nota1, nota2, (nota1 + nota2) / 2);
+
+                printf("\nNotas atualizadas com sucesso!\n\n");
+
+                break;
+            }
+        } while (!feof(arquivo));
+
+        if(feof(arquivo)) {
+            printf("\nO aluno nao foi encontrado!\n\n");
+        }
+    }
+
+    fclose(arquivo);
+
+    return 0;
+}
+</code></pre>
+
+            <p>6.</p>
+<pre><code class="hljs cpp">#include &ltstdio.h>
+#include &ltstring.h>
+
+struct Contato {
+    char nome[50];
+    char telefone[20];
+    char email[50];
+    char aniversario[11];
+};
+
+void inserirContato(FILE *arquivo) {
+    struct Contato contato;
+
+    freopen("contatos.dat", "ab+", arquivo);
+
+    printf("\nInserindo novo contato:\n");
+
+    printf("Nome: ");
+    scanf(" %s", contato.nome);
+
+    printf("Telefone: ");
+    scanf(" %s", contato.telefone);
+
+    printf("Email: ");
+    scanf(" %s", contato.email);
+
+    printf("Aniversario: ");
+    scanf(" %s", contato.aniversario);
+
+    fwrite(&ampcontato, sizeof(struct Contato), 1, arquivo);
+    fclose(arquivo);
+}
+
+void listarContatos(FILE *arquivo) {
+    struct Contato contato;
+    int i = 1;
+
+    freopen("contatos.dat", "rb+", arquivo);
+
+    while (fread(&ampcontato, sizeof(struct Contato), 1, arquivo) != 0) {
+        printf("\nContato %d:\n", i);
+        printf("\tNome: %s\n", contato.nome);
+        printf("\tTelefone: %s\n", contato.telefone);
+        printf("\tEmail: %s\n", contato.email);
+        printf("\tAniversario: %s\n", contato.aniversario);
+        i++;
+    } ;
+
+    fclose(arquivo);
+}
+
+void pesquisarContato(FILE *arquivo, char nome[]) {
+    struct Contato contato;
+
+    freopen("contatos.dat", "rb+", arquivo);
+
+    while (fread(&ampcontato, sizeof(struct Contato), 1, arquivo) != 0) {
+        if (strcmp(contato.nome, nome) == 0) {
+            printf("\nContato %s encontrado:\n", nome);
+            printf("\tNome: %s\n", contato.nome);
+            printf("\tTelefone: %s\n", contato.telefone);
+            printf("\tEmail: %s\n", contato.email);
+            printf("\tAniversario: %s\n", contato.aniversario);
+            break;
+        }
+    }
+
+    fclose(arquivo);
+}
+
+void apagarContato() {
+
+}
+
+int main() {
+
+    FILE *arquivo;
+    int opcao;
+    char nome_pesquisa[50];
+
+    arquivo = fopen("contatos.dat", "ab+");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir arquivo\n");
+        return 1;
+    }
+
+    do {
+        printf("\n1 - Inserir novo contato\n");
+        printf("2 - Apagar contato\n");
+        printf("3 - Pesquisar contato\n");
+        printf("4 - Exibir contatos\n");
+        printf("5 - Sair\n");
+        printf("Opcao: ");
+        scanf(" %d", &ampopcao);
+
+        switch(opcao) {
+            case 1:
+                inserirContato(arquivo);
+                break;
+            case 2:
+                break;
+            case 3:
+                printf("\nInsira o a pesquisar: ");
+                scanf(" %s", nome_pesquisa);
+                pesquisarContato(arquivo, nome_pesquisa);
+                break;
+            case 4:
+                listarContatos(arquivo);
+                break;
+        }
+    } while (opcao != 5);
+
+    fclose(arquivo);
+
+    return 0;
+}
+</code></pre>
+        </article>
+
+        <article>
+            <h3 style="display: block; float: left;"><a href="arquivo.html">Voltar</a></h3>
+        </article>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
