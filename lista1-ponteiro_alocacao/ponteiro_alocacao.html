@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>UFGD - Laborátorio de Programação 2</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.8.0/styles/default.min.css">
+
+    <style media="screen">
+        body {
+            font: 18px Cambria, Arial, sans-serif;
+        }
+        code {
+            font-size: 12px;
+        }
+        header.main-header {
+            text-align: center;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        article {
+            overflow: auto;
+            border-bottom: 1px solid #d0d0d0;
+            margin: 5px;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .wrapper {
+            margin: auto;
+            width: 80%;
+            padding: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function changeDisplay(divid, btid) {
+            var display = document.getElementById(divid).style.display;
+            if(display == "none") {
+                document.getElementById(divid).style.display = "block";
+                document.getElementById(btid).innerHTML = "Ocultar solução";
+            } else {
+                document.getElementById(divid).style.display = "none";
+                document.getElementById(btid).innerHTML = "Exibir solução";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <h1>Universidade Federal da Grande Dourados</h1>
+            <h4>Sistemas de Informação</h4>
+            <h4>Laboratório de Programação II</h4>
+            <h5>Programa de Monitoria</h5>
+        </header>
+
+        <article>
+            <h3>Lista de Exercícios 1</h3>
+            <ul>
+                <li>Ponteiros</li>
+                <li>Alocação Dinâmica</li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>Exercícios</h3>
+            <p>
+                <b>1.</b> Preencha corretamente as sentenças abaixo:
+                <ol type="a">
+                    <li>
+                        O operador ____ retorna o local na memória em que seu
+                        operando está armazenado.
+                    </li>
+                    <li>
+                        O operador ____ retorna o valor do objeto ao qual seu
+                        operando aponta.
+                    </li>
+                    <li>
+                        Na chamada de funções com passagem de parâmetros por
+                        referência, de uma variável de tipo não-array,
+                        deve-se passar o ____ da variável.
+                    </li>
+                    <li>
+                        Em uma variável ponteiro, o seu valor é o ____ de outra
+                        variável.
+                    </li>
+                    <li>
+                        O único valor de tipo inteiro que pode ser usado
+                        para inicializar um ponteiro é o ____.
+                    </li>
+                </ol>
+            </p>
+
+            <p>
+                <b>2.</b> Analise o código abaixo. Quais serão os valores de <i>x</i>, <i>y</i> e <i>z</i> ao final da execução
+<pre><code class="hljs cpp">int x, y, z;
+int *ptr;
+int **ptr2;
+
+x = 4;
+y = 8;
+z = 16;
+
+ptr  = &z;
+x    = *ptr;
+ptr2 = &ptr;
+(*ptr)++;
+ptr = &y;
+*(*ptr2) += *(&ampx);
+</code></pre>
+            </p>
+
+            <p>
+                <b>3.</b> Qual é o erro do código abaixo?
+<pre><code class="hljs cpp">#include &ltstdio.h>
+
+int main() {
+int x, y;
+
+void *ptr_x;
+int  *ptr_y;
+
+ptr_x = &x;
+ptr_y = y;
+
+printf("x: %d\n", *ptr_x);
+printf("y: %d\n", *ptr_y);
+
+return 0;
+}
+</code></pre>
+            </p>
+
+            <p>
+                <b>4.</b> A leitura de uma variavel simples (não-array) com a função scanf necessita do uso do operador '&amp' para armazenar o conteúdo lido, ou seja, necessita do endereço da variável. Explique porque o operador '&amp' não é utilizado para ler strings com a função scanf. O código abaixo demonstra um exemplo:
+<pre><code class="hljs cpp">char str[10];
+char chr;
+
+scanf(" %s", str);  // Não usa o operador &amp
+scanf(" %s", &ampchr); // Usa o operador &amp
+</pre></code>
+            </p>
+
+            <p>
+                <b>5.</b> Crie uma função <i>swap</i> que troca o valor de duas variáveis passadas como referência
+            </p>
+
+            <p>
+                <b>6.</b> Escreva um trecho de código para alocar um vetor de inteiros dinamicamente. Também escreva como liberar a memória alocada por esse vetor.
+            </p>
+
+            <p>
+                <b>7.</b> Escreva um trecho de código para alocar uma matriz de inteiros dinamicamente. Também escreva como liberar a memória alocada por essa matriz.
+            </p>
+
+            <p>
+                <b>8.</b> Escreva uma função que recebe como parâmetro duas strings, A e B, e retorna uma nova string, cujo conteúdo é a concatenação de A com B. <br> <b>OBS:</b> você poderá usar a biblioteca string.h, mas não poderá usar a função strcat.
+            </p>
+
+            <p>
+                <b>9.</b> Escreva uma função que recebe como parâmetro uma string, e retorne-a invertida.
+            </p>
+
+        </article>
+
+        <article>
+            <h3 style="text-align: right; float: right;"><a href="ponteiro_alocacao_resp.html">Respostas</a></h3>
+            <h3 style="text-align: left; float: left;"><a href="../index.html">Voltar</a></h3>
+        </article>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>UFGD - Laborátorio de Programação 2</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.8.0/styles/default.min.css">
+
+    <style media="screen">
+        body {
+            font: 18px Cambria, Arial, sans-serif;
+        }
+        code {
+            font-size: 12px;
+        }
+        header.main-header {
+            text-align: center;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        article {
+            overflow: auto;
+            border-bottom: 1px solid #d0d0d0;
+            margin: 5px;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .wrapper {
+            margin: auto;
+            width: 80%;
+            padding: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function changeDisplay(divid, btid) {
+            var display = document.getElementById(divid).style.display;
+            if(display == "none") {
+                document.getElementById(divid).style.display = "block";
+                document.getElementById(btid).innerHTML = "Ocultar solução";
+            } else {
+                document.getElementById(divid).style.display = "none";
+                document.getElementById(btid).innerHTML = "Exibir solução";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <h1>Universidade Federal da Grande Dourados</h1>
+            <h4>Sistemas de Informação</h4>
+            <h4>Laboratório de Programação II</h4>
+            <h5>Programa de Monitoria</h5>
+        </header>
+
+        <article>
+            <h3>Lista de Exercícios 2</h3>
+            <ul>
+                <li>Struct</li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>Exercícios</h3>
+            <p>
+                <b>1.</b> Faça um programa que leia um arquivo "entrada.txt", contendo um número inteiro em cada linha. O programa deverá criar um arquivo "saida.txt" contendo a soma de todos esses números.
+            </p>
+
+            <p>
+                <b>2.</b> Faça um programa que cria um arquivo contendo a sequência Fibonacci até um n-ésimo termo informado no ínicio da execução.
+            </p>
+
+            <p>
+                <b>3.</b> Faça um programa que leia um arquivo texto qualquer e transforme todas as letras do arquivo em letras maiúsculas.
+            </p>
+
+            <p>
+                <b>4.</b> Uma escola deseja registrar as notas dos seus alunos. A avaliação da escola leva em consideração duas notas que valem de 0 a 10. Faça um programa que leia o nome do aluno, a primira nota e a segunda nota. Grave as informações em um arquivo texto. Seu arquivo deverá gravar, além do nome e as duas notas, a média obtida pelo aluno. A leitura das notas termina quando o nome do aluno for "0" (utilize a biblioteca string.h) ou quando alguma das notas não estiver dentro do intervalo permitido (menor que 0 ou maior que 10).
+            </p>
+
+            <p>
+                <b>5.</b> Com base no exercício anterior, faça um programa para alterar a primeira e segunda nota de um aluno. Faça a pesquisa de acordo com o nome do aluno. Caso a pesquisa não encontre o aluno, informe que o aluno não foi encontrado. Caso a pequisa encontre o aluno, realize a troca das notas daquele aluno. A média do aluno deve ser atualizada automaticamente de acordo com as novas notas informadas. A pesquisa deve ser encerrada caso o nome informado seja "0".
+            </p>
+
+            <p>
+                <b>6.</b> Faça um programa que crie uma lista de contatos em um arquivo "contatos.dat". Seu programa deverá conter um menu com as seguintes opções: (1) inserir novo contato, (2) apagar contato, (3) pesquisar contato, (4) exibir contatos. Um contato deverá conter informações como: (1) nome, (2) telefone, (3) email, (4) data de aniversario. Utilize arquivo binário structs para acessar as informações.
+            </p>
+        </article>
+
+        <article>
+            <h3 style="display: block; right; float: right;"><a href="arquivo_resp.html">Respostas</a></h3>
+            <h3 style="display: block; float: left;"><a href="../index.html">Voltar</a></h3>
+        </article>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

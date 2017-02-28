@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>UFGD - Laborátorio de Programação 2</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.8.0/styles/default.min.css">
+
+    <style media="screen">
+        body {
+            font: 18px Cambria, Arial, sans-serif;
+        }
+        code {
+            font-size: 12px;
+        }
+        header.main-header {
+            text-align: center;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        article {
+            overflow: auto;
+            border-bottom: 1px solid #d0d0d0;
+            margin: 5px;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .wrapper {
+            margin: auto;
+            width: 80%;
+            padding: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function changeDisplay(divid, btid) {
+            var display = document.getElementById(divid).style.display;
+            if(display == "none") {
+                document.getElementById(divid).style.display = "block";
+                document.getElementById(btid).innerHTML = "Ocultar solução";
+            } else {
+                document.getElementById(divid).style.display = "none";
+                document.getElementById(btid).innerHTML = "Exibir solução";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <h1>Universidade Federal da Grande Dourados</h1>
+            <h4>Sistemas de Informação</h4>
+            <h4>Laboratório de Programação II</h4>
+            <h5>Programa de Monitoria</h5>
+        </header>
+
+        <article>
+            <h3>Lista de Exercícios 3</h3>
+            <ul>
+                <li>Recursão</li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>Exercícios</h3>
+            <p>
+                <b>1.</b> Crie uma função recursiva que receba um número inteiro <i>n</i> e retorna a soma de todos os números entre 1 e <i>n</i>.
+            </p>
+
+            <p>
+                <b>2.</b> Crie uma função recursiva que retorne o fatorial de um número inteiro <i>n</i>.
+            </p>
+
+            <p>
+                <b>3.</b> Crie uma função recursiva que retorne a potência de 2 para um expoente <i>n</i>.
+            </p>
+
+            <p>
+                <b>4.</b> Crie uma função recursiva que retorne a potência de uma base <i>b</i> elevado a um expoente <i>n</i>.
+            </p>
+
+            <p>
+                <b>5.</b> Crie uma função recursiva que retorne a multiplicação de dois números inteiros através de somas consecutivas.
+            </p>
+
+            <p>
+                <b>6.</b> Crie uma função recursiva que retorne o produto escalar de dois vetores de inteiros.
+            </p>
+
+            <p>
+                <b>7.</b> Considere a função matemática <i>f(n) = n²+3</i>. Crie uma função recursiva que retorne o somatório da função <i>f(n)</i> para <i>i</i> variando de <i>1</i> até <i>n</i>.
+            </p>
+
+            <p>
+                <b>8.</b> Dado um capital inicial <i>C</i>, uma rentabilidade mensal <i>R</i> e uma quantidade <i>X</i> de meses, faça uma função recursiva para calcular o montante ao final de <i>X</i> meses.
+            </p>
+
+            <p>
+                <b>9.</b> Dado um vetor de <i>n</i> inteiros, crie uma função recursiva que retorne o maior elemento desse vetor. Use o paradigma dividir para conquistar.
+            </p>
+
+            <p>
+                <b>10.</b> Crie uma função recursiva que receba um inteiro <i>n</i> e retorne a soma de seus dígitos. Por exemplo, para um <i>n = 1842</i>, retorne <i>1 + 8 + 4 + 2 = 15</i>.
+            </p>
+
+            <p>
+                <b>11.</b> Crie uma função recursiva que retorne o n-ésimo termo da sequência de Padovan. A sequencia de Padovan é definida por <i>P(0) = P(1) = P(2) = 1 e P(n) = P(n-2) + P(n-3)</i>.
+            </p>
+
+            <p>
+                <b>12.</b> Crie uma função recursiva que receba um número inteiro <i>n</i> na base decimal e imprimi-o na base binária.
+            </p>
+
+            <p>
+                <b>13.</b> Crie uma função recursiva para inverter os dados de um vetor.
+            </p>
+
+            <p>
+                <b>14.</b> Crie uma função recursiva que retorne a quantidade de vezes que um elemento <i>x</i> aparece em um vetor.
+            </p>
+        </article>
+
+        <article>
+            <h3 style="display: block; right; float: right;"><a href="recursao_resp.html">Respostas</a></h3>
+            <h3 style="display: block; float: left;"><a href="../index.html">Voltar</a></h3>
+        </article>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

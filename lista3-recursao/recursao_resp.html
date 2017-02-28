@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>UFGD - Laborátorio de Programação 2</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.8.0/styles/default.min.css">
+
+    <style media="screen">
+        body {
+            font: 18px Cambria, Arial, sans-serif;
+        }
+        code {
+            font-size: 12px;
+        }
+        header.main-header {
+            text-align: center;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        article {
+            overflow: auto;
+            border-bottom: 1px solid #d0d0d0;
+            margin: 5px;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .wrapper {
+            margin: auto;
+            width: 80%;
+            padding: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function changeDisplay(divid, btid) {
+            var display = document.getElementById(divid).style.display;
+            if(display == "none") {
+                document.getElementById(divid).style.display = "block";
+                document.getElementById(btid).innerHTML = "Ocultar solução";
+            } else {
+                document.getElementById(divid).style.display = "none";
+                document.getElementById(btid).innerHTML = "Exibir solução";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <h1>Universidade Federal da Grande Dourados</h1>
+            <h4>Sistemas de Informação</h4>
+            <h4>Laboratório de Programação II</h4>
+            <h5>Programa de Monitoria</h5>
+        </header>
+
+        <article>
+            <h3>Respostas Lista 3 - Recursão</h3>
+            <p>1.</p>
+<pre><code class="hljs cpp">int somaAteN(int n) {
+    if(n == 1) {
+        return 1;
+    } else {
+        return n + somaAteN(n-1);
+    }
+}
+</code></pre>
+
+            <p>2.</p>
+<pre><code class="hljs cpp">int fatorial(int n) {
+    if(n == 0) {
+        return 1;
+    } else {
+        return n * fatorial(n-1);
+    }
+}
+</code></pre>
+
+            <p>3.</p>
+<pre><code class="hljs cpp">int potenciaDe2(int n) {
+    if(n == 0) {
+        return 1;
+    } else {
+        return 2 * potenciaDe2(n-1);
+    }
+}
+</code></pre>
+
+            <p>4.</p>
+<pre><code class="hljs cpp">int potenciaBaseExpoente(int b, int e) {
+    if(e == 0) {
+        return 1;
+    } else {
+        return b * potenciaBaseExpoente(b, e-1);
+    }
+}
+</code></pre>
+
+            <p>5.</p>
+<pre><code class="hljs cpp">int multiplicacao(int a, int b) {
+    if(b == 1) {
+        return a;
+    } else {
+        return a + multiplicacao(a, b-1);
+    }
+}
+</code></pre>
+
+            <p>6.</p>
+<pre><code class="hljs cpp">int produtoEscalar(int *vet1, int *vet2, int n) {
+    if(n == 0) {
+        return 0;
+    } else {
+        printf("%d ", vet1[n-1]);
+        return vet1[n-1] * vet2[n-1] + produtoEscalar(vet1, vet2, n-1);
+    }
+}
+</code></pre>
+
+            <p>7.</p>
+<pre><code class="hljs cpp">int somatorioFuncao(int n) {
+    if(n == 0) {
+        return 0;
+    } else {
+        return n*n+3 + somatorioFuncao(n-1);
+    }
+}
+</code></pre>
+
+            <p>8.</p>
+<pre><code class="hljs cpp">float rentabilidade(float capital, float rent, int x_meses) {
+    if(x_meses == 0) {
+        return capital;
+    }
+    else {
+        return rentabilidade(capital, rent, x_meses-1) * (1+rent);
+    }
+}
+</code></pre>
+
+            <p>9.</p>
+<pre><code class="hsjs cpp">int maior(int *vetor, int inicio, int fim) {
+    int maior_esquerda;
+    int maior_direita;
+
+    if(inicio == fim) {
+        return vetor[fim];
+    }
+
+    if(inicio+1 == fim) {
+        if(vetor[inicio] &gt vetor[fim]) {
+            return vetor[inicio];
+        }
+        else {
+            return vetor[fim];
+        }
+    }
+    else {
+        maior_esquerda = maior(vetor, inicio, (inicio+fim)/2);
+        maior_direita = maior(vetor, ((inicio+fim)/2)+1, fim);
+
+        if(maior_esquerda &gt maior_direita) {
+            return maior_esquerda;
+        }
+        else {
+            return maior_direita;
+        }
+    }
+}
+</code></pre>
+
+            <p>10.</p>
+<pre><code class="hljs cpp">int somaDigitos(int n) {
+    if(n < 10) {
+        return n;
+    }
+    else {
+        return n%10 + somaDigitos(n/10);
+    }
+}
+</code></pre>
+
+            <p>11.</p>
+<pre><code class="hljs cpp">int padovan(int n) {
+    if(n == 0 || n == 1 || n == 2) {
+        return 1;
+    }
+    else {
+        return padovan(n-2) + padovan(n-3);
+    }
+}
+</code></pre>
+
+            <p>12.</p>
+<pre><code class="hljs cpp">void binario(int n) {
+    int resto;
+    int quociente;
+    if(n == 0) {
+        return;
+    }
+    else{
+        resto = n%2;
+        quociente = n/2;
+        binario(quociente);
+        printf("%d", resto);
+    }
+}
+</code></pre>
+
+            <p>13.</p>
+<pre><code class="hljs cpp">void inverter(int *vetor, int inicio, int fim) {
+    int aux;
+    if(inicio &gt= fim) {
+        return;
+    }
+    else {
+        aux = vetor[inicio];
+        vetor[inicio] = vetor[fim];
+        vetor[fim] = aux;
+        inverter(vetor, inicio+1, fim-1);
+    }
+}
+</code></pre>
+
+            <p>14.</p>
+<pre><code class="hljs cpp">int contaElemento(int *vetor, int chave, int n) {
+    if(n < 0) {
+        return 0;
+    }
+    else  {
+        if(chave == vetor[n]) {
+            return 1 + contaElemento(vetor, chave, n-1);
+        }
+        else {
+            return contaElemento(vetor, chave, n-1);
+        }
+    }
+}
+</code></pre>
+        </article>
+
+        <article>
+            <h3 style="display: block; float: left;"><a href="recursao.html">Voltar</a></h3>
+        </article>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

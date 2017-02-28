@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>UFGD - Laborátorio de Programação 2</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.8.0/styles/default.min.css">
+
+    <style media="screen">
+        body {
+            font: 18px Cambria, Arial, sans-serif;
+        }
+        code {
+            font-size: 12px;
+        }
+        header.main-header {
+            text-align: center;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        article {
+            overflow: auto;
+            border-bottom: 1px solid #d0d0d0;
+            margin: 5px;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .wrapper {
+            margin: auto;
+            width: 80%;
+            padding: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function changeDisplay(divid, btid) {
+            var display = document.getElementById(divid).style.display;
+            if(display == "none") {
+                document.getElementById(divid).style.display = "block";
+                document.getElementById(btid).innerHTML = "Ocultar solução";
+            } else {
+                document.getElementById(divid).style.display = "none";
+                document.getElementById(btid).innerHTML = "Exibir solução";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <h1>Universidade Federal da Grande Dourados</h1>
+            <h4>Sistemas de Informação</h4>
+            <h4>Laboratório de Programação II</h4>
+            <h5>Programa de Monitoria</h5>
+        </header>
+
+        <article>
+            <h3>Lista de Exercícios 2</h3>
+            <ul>
+                <li>Struct</li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>Exercícios</h3>
+            <p>
+                <b>1.</b> Uma coordenada no plano cartesiano é representada por um par ordenado (x, y). Crie uma estrutura chamada Ponto para armazenar a coordenada de um ponto qualquer. Em seguida, crie uma função que recebe como parâmetro dois pontos distintos e retorna a distância entre esses dois pontos.
+            </p>
+
+            <p>
+                <b>2.</b> Uma formiga caminha por um plano cartesiano. Ela começa em uma posição inicial e muda de lugar de tempos em tempos. A formiga termina seu percurso quando ela volta para sua posição inicial. Faça um programa que receba como entrada a posição inicial da formiga e os pontos que ela caminhou. A execução do programa deve parar quando a formiga voltar para sua posição inicial. Exiba como saída a distância percorrida pela formiga.
+            </p>
+
+            <p>
+                <b>3.</b> Crie um programa para registrar 5 alunos, onde cada registro possui nome, CPF, data de nascimento, nota1 e nota2. Depois de registrar todos os alunos, seu programa deve buscar e imprimir todas as informações dos alunos reprovados (média < 6.0).<br> <b>Dica:</b> Crie uma struct para a data de nascimento.
+            </p>
+
+            <p>
+                <b>4.</b> Com base no exercício 3, crie uma função que recebe como parâmetro um ano qualquer e imprima todos os alunos nascidos naquele ano.
+            </p>
+
+            <p>
+                <b>5.</b> Em um evento de informática, foram cadastrados 10 participantes, em um registro contendo nome, CPF, idade, modalidade e lote. As modalidades possuem os seguintes preços:
+                <ul>
+                    <li>Modalidade 1: R$ 50,00 + preço do lote</li>
+                    <li>Modalidade 2: R$ 30,00 + preço do lote</li>
+                    <li>Modalidade 3: R$ 80,00 + preço do lote</li>
+                </ul>
+                A cada lote esgotado, aumenta-se R$ 20,00 no preço da modalidade e inicia-se a venda de outro lote. O primeiro lote não aumenta o preço. O evento disponibiliza apenas 3 lotes de venda. Pessoas abaixo de 15 anos possuem 50% de desconto no preço da modalidade.ço. Faça um programa para registrar todos os participantes e imprimir o preço que cada um irá pagar.
+            </p>
+        </article>
+
+        <article>
+            <h3 style="display: block; right; float: right;"><a href="struct_resp.html">Respostas</a></h3>
+            <h3 style="display: block; float: left;"><a href="../index.html">Voltar</a></h3>
+        </article>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

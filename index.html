@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>UFGD - Laborátorio de Programação 2</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.8.0/styles/default.min.css">
+
+    <style media="screen">
+        body {
+            font: 18px Cambria, Arial, sans-serif;
+        }
+        code {
+            font-size: 12px;
+        }
+        header.main-header {
+            text-align: center;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        article {
+            overflow: auto;
+            border-bottom: 1px solid #d0d0d0;
+            margin: 5px;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .wrapper {
+            margin: auto;
+            width: 80%;
+            padding: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function changeDisplay(divid, btid) {
+            var display = document.getElementById(divid).style.display;
+            if(display == "none") {
+                document.getElementById(divid).style.display = "block";
+                document.getElementById(btid).innerHTML = "Ocultar solução";
+            } else {
+                document.getElementById(divid).style.display = "none";
+                document.getElementById(btid).innerHTML = "Exibir solução";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <h1>Universidade Federal da Grande Dourados</h1>
+            <h4>Sistemas de Informação</h4>
+            <h4>Laboratório de Programação II</h4>
+            <h5>Programa de Monitoria</h5>
+        </header>
+
+        <article>
+            <h3>Programa de Monitoria</h3>
+            <ul style="list-style: none;">
+                <li>Monitor: André Câmara O. Sanches</li>
+                <li>Professor: Adailton José A. Cruz</li>
+                <li>Horário: sexta-feira, 13:00 às 17:00</li>
+                <li>Local: Laboratório de Sistemas de Informação II - FACET</li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>Lista de Exercícios</h3>
+            <ol>
+                <li><a href="lista1-ponteiro_alocacao/ponteiro_alocacao.html">Ponteiros e Alocação Dinâmica</a></li>
+                <li><a href="lista2-struct/struct.html">Structs</a></li>
+                <li><a href="lista3-recursao/recursao.html">Recursão</a></li>
+                <li><a href="lista4-arquivo/arquivo.html">Arquivos</a></li>
+                <li><a href="lista5-lista_pilha_fila/lista_pilha_fila.html">Listas, Pilhas e Filas</a></li>
+            </ol>
+        </article>
+
+        <article>
+            <h3>Projeto Pacman</h3>
+            <p>Em breve</p>
+        </article>
+
+        <article>
+            <h3>Links para estudo auxiliar</h3>
+            <ul>
+                <li><a href="https://www.ime.usp.br/~pf/algoritmos">IME-USP</a></li>
+                <li><a href="http://www.inf.ufpr.br/cursos/ci067/Docs/NotasAula">UFPR</a></li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>Bibliografia recomendada</h3>
+            <ul>
+                <li>DEITEL, P.; DEITEL, H. C: Como Programar. 6. ed. São Paulo: Pearson, 2011.</li>
+                <li>FEOFILOFF, P. Algoritmos em Linguagem C, 1. ed. Rio de Janeiro: Elsevier, 2008.</li>
+                <li>ASCENCIO, A. F. G.; CAMPOS, E. A. V. Fundamentos da programação de computadores: Algoritmos, Pascal, C/C ++ e Java. 3. ed. São Paulo: Pearson, 2012.</li>
+            </ul>
+        </article>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

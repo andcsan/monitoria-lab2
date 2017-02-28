@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>UFGD - Laborátorio de Programação 2</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.8.0/styles/default.min.css">
+
+    <style media="screen">
+        body {
+            font: 18px Cambria, Arial, sans-serif;
+        }
+        code {
+            font-size: 12px;
+        }
+        header.main-header {
+            text-align: center;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        article {
+            overflow: auto;
+            border-bottom: 1px solid #d0d0d0;
+            margin: 5px;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .wrapper {
+            margin: auto;
+            width: 80%;
+            padding: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function changeDisplay(divid, btid) {
+            var display = document.getElementById(divid).style.display;
+            if(display == "none") {
+                document.getElementById(divid).style.display = "block";
+                document.getElementById(btid).innerHTML = "Ocultar solução";
+            } else {
+                document.getElementById(divid).style.display = "none";
+                document.getElementById(btid).innerHTML = "Exibir solução";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <h1>Universidade Federal da Grande Dourados</h1>
+            <h4>Sistemas de Informação</h4>
+            <h4>Laboratório de Programação II</h4>
+            <h5>Programa de Monitoria</h5>
+        </header>
+
+        <article>
+            <h3>Respostas Lista 2 - Struct</h3>
+            <p>1.</p>
+<pre><code class="hljs cpp">#include &ltmath.h>
+
+struct Ponto {
+    float x;
+    float y;
+};
+
+float distancia(struct Ponto a, struct Ponto b) {
+    return sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
+}
+</code></pre>
+
+            <p>2.</p>
+<pre><code class="hljs cpp">#include &ltstdio.h>
+#include &ltmath.h>
+
+struct Ponto {
+    float x;
+    float y;
+};
+
+float distancia(struct Ponto a, struct Ponto b) {
+    return sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
+}
+
+int main(void) {
+    struct Ponto pi;   // Ponto inicial
+    struct Ponto pa;   // Ponto atual
+    struct Ponto aux;  // Ponto auxiliar
+
+    float perimetro = 0;
+
+    printf("Coordenada (x, y) da posição inicial da formiga: ");
+    scanf(" %f %f", &amppi.x, &amppi.y);
+
+    aux = pi;
+
+    do {
+        printf("Coordenada (x, y) da próxima posição da formiga: ");
+        scanf(" %f %f", &amppa.x, &amppa.y);
+        perimetro = perimetro + distancia(aux, pa);
+        aux = pa;
+    } while(pa.x != pi.x || pa.y != pi.y);
+
+    printf("A formiga voltou e percorreu um total de %.2f unidades.\n", perimetro);
+
+    return 0;
+}
+</code></pre>
+
+            <p>3.</p>
+<pre><code class="hljs cpp">#include &ltstdio.h>
+
+#define N_ALUNOS 5
+
+struct Data {
+    int dia;
+    int mes;
+    int ano;
+};
+
+struct Aluno {
+    char nome[50];
+    char cpf[15];
+    struct Data data_nasc;
+    float nota1;
+    float nota2;
+};
+
+void buscarReprovados(struct Aluno al[N_ALUNOS]) {
+    int i;
+
+    printf("\nALUNOS REPROVADOS:\n");
+
+    for(i = 0; i &lt N_ALUNOS; i++) {
+        if((al[i].nota1 + al[i].nota2) / 2.0 &lt 6.0) {
+            printf("\tNome: %s\n", al[i].nome);
+            printf("\tCPF: %s\n", al[i].cpf);
+            printf("\tNascimento: %d/%d/%d\n", al[i].data_nasc.dia, al[i].data_nasc.mes, al[i].data_nasc.ano);
+            printf("\tNota 1: %.2f\n", al[i].nota1);
+            printf("\tNota 2: %.2f\n\n", al[i].nota2);
+        }
+    }
+}
+
+int main() {
+    int i;
+
+    struct Aluno alunos[N_ALUNOS];
+
+    for(i = 0; i &lt N_ALUNOS; i++) {
+        printf("\nREGISTRO DO ALUNO %d\n", i+1);
+
+        printf("\tNome: ");
+        scanf(" %[^\n]s", alunos[i].nome);
+
+        printf("\tCPF: ");
+        scanf(" %s", alunos[i].cpf);
+
+        printf("\tData de nascimento (dia, mês e ano separados por espaço): ");
+        scanf(" %d %d %d", &ampalunos[i].data_nasc.dia, &ampalunos[i].data_nasc.mes, &ampalunos[i].data_nasc.ano);
+
+        printf("\tNotas: ");
+        scanf(" %f %f", &ampalunos[i].nota1, &ampalunos[i].nota2);
+    }
+
+    buscarReprovados(alunos);
+
+    return 0;
+}
+</code></pre>
+
+            <p>4.</p>
+<pre><code class="hljs cpp">void buscarAlunoAno(struct Aluno al[N_ALUNOS], int ano) {
+    int i;
+    int ano_nasc;
+
+    printf("\nALUNOS NASCIDOS EM %d\n", ano);
+
+    for(i = 0; i &lt N_ALUNOS; i++) {
+        ano_nasc = al[i].data_nasc.ano;
+        if(ano_nasc == ano) {
+            printf("\tAluno: %s\n", al[i].nome);
+        }
+    }
+}
+</code></pre>
+
+            <p>5.</p>
+<pre><code class="hljs cpp">#include &ltstdio.h>
+
+#define N_CAD 10
+
+struct Cadastro {
+    char nome[50];
+    char cpf[15];
+    int idade;
+    int modalidade;
+    int lote;
+};
+
+int main() {
+    struct Cadastro cadastros[N_CAD];
+
+    float modalidades[3] = {50.00, 30.00, 80.00};
+    float preco_lote = 20.00;
+
+    int i;
+    float preco = 0;
+
+    printf("CADASTRO DE PARTICIPANTE\n");
+    for(i = 0; i &lt N_CAD; i++) {
+        printf("\nPARTICIPANTE %d\n", i);
+        printf("\tNome: ");
+        scanf(" %[^\n]s", cadastros[i].nome);
+
+        printf("\tCPF: ");
+        scanf(" %s", cadastros[i].cpf);
+
+        printf("\tIdade: ");
+        scanf(" %d", &ampcadastros[i].idade);
+
+        printf("\tModalidade: ");
+        scanf(" %d", &ampcadastros[i].modalidade);
+
+        printf("\tLote: ");
+        scanf(" %d", &ampcadastros[i].lote);
+    }
+
+    printf("\nPREÇO PAGO POR PARTICIPANTE\n");
+    for(i = 0; i &lt N_CAD; i++) {
+        printf("\tParticipante: %s (%s)\n", cadastros[i].nome, cadastros[i].cpf);
+
+        preco = modalidades[cadastros[i].modalidade - 1] + preco_lote * (cadastros[i].lote - 1);
+
+        if(cadastros[i].idade &lt 15) {
+            preco = preco * 0.5;
+        }
+
+        printf("\tPreço a pagar: %.2f\n\n", preco);
+    }
+
+    return 0;
+}
+</code></pre>
+        </article>
+
+        <article>
+            <h3 style="display: block; float: left;"><a href="struct.html">Voltar</a></h3>
+        </article>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

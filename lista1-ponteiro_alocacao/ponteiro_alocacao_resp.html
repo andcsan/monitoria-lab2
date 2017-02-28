@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>UFGD - Laborátorio de Programação 2</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.8.0/styles/default.min.css">
+
+    <style media="screen">
+        body {
+            font: 18px Cambria, Arial, sans-serif;
+        }
+        code {
+            font-size: 12px;
+        }
+        header.main-header {
+            text-align: center;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        article {
+            overflow: auto;
+            border-bottom: 1px solid #d0d0d0;
+            margin: 5px;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .wrapper {
+            margin: auto;
+            width: 80%;
+            padding: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function changeDisplay(divid, btid) {
+            var display = document.getElementById(divid).style.display;
+            if(display == "none") {
+                document.getElementById(divid).style.display = "block";
+                document.getElementById(btid).innerHTML = "Ocultar solução";
+            } else {
+                document.getElementById(divid).style.display = "none";
+                document.getElementById(btid).innerHTML = "Exibir solução";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <h1>Universidade Federal da Grande Dourados</h1>
+            <h4>Sistemas de Informação</h4>
+            <h4>Laboratório de Programação II</h4>
+            <h5>Programa de Monitoria</h5>
+        </header>
+
+        <article>
+            <h3>Respostas Lista 1 - Ponteiros e Alocação Dinâmica</h3>
+            <p>1.</p>
+            <p style="color: red">
+                a) &amp<br>
+                b) *<br>
+                c) endereço <br>
+                d) endereço <br>
+                e) 0 <br>
+            </p>
+
+            <p>2.</p>
+            <p style="color: red">
+                x = 16<br>
+                y = 24<br>
+                z = 17 <br>
+            </p>
+
+            <p>3.</p>
+            <ul style="color: red">
+                <li>
+                    As variáveis x e y não receberam nenhum valor. Irá imprimir lixo de memória.
+                </li>
+                <li>
+                    ptr_y deve receber o endereço de y, e não seu valor.<br>
+                    Correção: ptr_y = &y;
+                </li>
+                <li>
+                    Para desreferenciar um ponteiro void, é necessário fazer
+                    uma operação de casting.<br>
+                    Correção: printf("x: %d\n", *(int*)ptr_x);
+                </li>
+            </ul>
+
+            <p>4.</p>
+            <p style="color: red">
+                A função scanf necessita do endereço de memória da variável para que o valor seja corretamente armazenado. <br> Em variáveis compostas, usar apenas o nome da variável (sem o operador [ ]) é equivalente ao endereço da primeira posição de memória. Outra forma seria &(str[0])
+            </p>
+
+            <p>5.</p>
+<pre><code class="hljs cpp">void swap(int *a, int *b) {
+    int aux;
+
+    aux = *a;
+    *a = *b;
+    *b = aux;
+}
+</code></pre>
+
+            <p>6.</p>
+<pre><code class="hljs cpp">int *vetor;
+int n_elementos;
+
+// Alocando o vetor de inteiros:
+vetor = (int*) malloc(n_elementos * sizeof(int));
+
+// Liberando a memória alocada:
+free(vetor);
+</code></pre>
+
+            <p>7.</p>
+<pre><code class="hljs cpp">int **matriz;
+int n_linhas;
+int n_colunas;
+int i;
+
+// Alocando um vetor de ponteiros:
+matriz = (int**) malloc(n_linhas * sizeof(int*));
+
+// Para cada ponteiro do vetor, aloca um vetor de inteiros:
+for(i = 0; i &lt n_linhas; i++) {
+    matriz[i] = (int*) malloc(n_colunas * sizeof(int));
+}
+
+// Liberando as memórias alocadas:
+for(i = 0; i &lt n_linhas; i++) {
+    free(matriz[i]);
+}
+free(matriz);
+</code></pre>
+
+            <p>8.</p>
+<pre><code class="hljs cpp">#include &ltstdlib.h>
+#include &ltstring.h>
+
+char *concatena(char *str1, char *str2) {
+    char *str3;
+
+    int len1;
+    int len2;
+    int len3;
+
+    int i;
+
+    len1 = strlen(str1);
+    len2 = strlen(str2);
+    len3 = len1 + len2 + 1; // +1 devido ao caractere \0
+
+    str3 = (char*) malloc(len3 * sizeof(char));
+
+    // Insere a primeira string
+    for(i = 0; i &lt len1; i++) {
+        str3[i] = str1[i];
+    }
+
+    // Insere a segunda string
+    for(i = 0; i &lt len2; i++) {
+        str3[len1 + i] = str2[i];
+    }
+
+    str3[len3] = '\0';
+
+    return str3;
+}
+</code></pre>
+
+            <p>9.</p>
+<pre><code class="hljs cpp">#include &ltstdlib.h>
+#include &ltstring.h>
+
+char *inverter(char *str) {
+    int i, j;
+    int len;
+    char *inv;
+
+    len = strlen(str);
+    inv = (char*) malloc(len * sizeof(char));
+
+    for(i = len - 1, j = 0; i &gt= 0; i--, j++) {
+        inv[j] = str[i];
+    }
+
+    inv[len] = '\0';
+
+    return inv;
+}
+</code></pre>
+        </article>
+
+        <article>
+            <h3 style="display: block; float: left;"><a href="ponteiro_alocacao.html">Voltar</a></h3>
+        </article>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
