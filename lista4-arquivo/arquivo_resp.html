@@ -300,77 +300,17 @@ struct Contato {
     char aniversario[11];
 };
 
-void inserirContato(FILE *arquivo) {
-    struct Contato contato;
-
-    freopen("contatos.dat", "ab+", arquivo);
-
-    printf("\nInserindo novo contato:\n");
-
-    printf("Nome: ");
-    scanf(" %s", contato.nome);
-
-    printf("Telefone: ");
-    scanf(" %s", contato.telefone);
-
-    printf("Email: ");
-    scanf(" %s", contato.email);
-
-    printf("Aniversario: ");
-    scanf(" %s", contato.aniversario);
-
-    fwrite(&ampcontato, sizeof(struct Contato), 1, arquivo);
-    fclose(arquivo);
-}
-
-void listarContatos(FILE *arquivo) {
-    struct Contato contato;
-    int i = 1;
-
-    freopen("contatos.dat", "rb+", arquivo);
-
-    while (fread(&ampcontato, sizeof(struct Contato), 1, arquivo) != 0) {
-        printf("\nContato %d:\n", i);
-        printf("\tNome: %s\n", contato.nome);
-        printf("\tTelefone: %s\n", contato.telefone);
-        printf("\tEmail: %s\n", contato.email);
-        printf("\tAniversario: %s\n", contato.aniversario);
-        i++;
-    } ;
-
-    fclose(arquivo);
-}
-
-void pesquisarContato(FILE *arquivo, char nome[]) {
-    struct Contato contato;
-
-    freopen("contatos.dat", "rb+", arquivo);
-
-    while (fread(&ampcontato, sizeof(struct Contato), 1, arquivo) != 0) {
-        if (strcmp(contato.nome, nome) == 0) {
-            printf("\nContato %s encontrado:\n", nome);
-            printf("\tNome: %s\n", contato.nome);
-            printf("\tTelefone: %s\n", contato.telefone);
-            printf("\tEmail: %s\n", contato.email);
-            printf("\tAniversario: %s\n", contato.aniversario);
-            break;
-        }
-    }
-
-    fclose(arquivo);
-}
-
-void apagarContato() {
-
-}
+void inserirContato(FILE *);
+void apagarContato(FILE *);
+void pesquisarContato(FILE *);
+void listarContatos(FILE *);
 
 int main() {
 
     FILE *arquivo;
     int opcao;
-    char nome_pesquisa[50];
 
-    arquivo = fopen("contatos.dat", "ab+");
+    arquivo = fopen("contatos.dat", "ab");
 
     if (arquivo == NULL) {
         printf("Erro ao abrir arquivo\n");
@@ -391,11 +331,10 @@ int main() {
                 inserirContato(arquivo);
                 break;
             case 2:
+                apagarContato(arquivo);
                 break;
             case 3:
-                printf("\nInsira o a pesquisar: ");
-                scanf(" %s", nome_pesquisa);
-                pesquisarContato(arquivo, nome_pesquisa);
+                pesquisarContato(arquivo);
                 break;
             case 4:
                 listarContatos(arquivo);
@@ -406,6 +345,131 @@ int main() {
     fclose(arquivo);
 
     return 0;
+}
+
+
+void inserirContato(FILE *arquivo) {
+
+    struct Contato contato;
+
+    freopen("contatos.dat", "ab", arquivo);
+
+    if(arquivo == NULL) {
+        printf("Erro ao abrir o arquivo\n");
+        return;
+    }
+
+    printf("\nInserindo novo contato:\n");
+
+    printf("Nome: ");
+    scanf(" %[^\n]s", contato.nome);
+
+    printf("Telefone: ");
+    scanf(" %s", contato.telefone);
+
+    printf("Email: ");
+    scanf(" %s", contato.email);
+
+    printf("Aniversario: ");
+    scanf(" %s", contato.aniversario);
+
+    fwrite(&ampcontato, sizeof(struct Contato), 1, arquivo);
+    fclose(arquivo);
+}
+
+void apagarContato(FILE *arquivo) {
+    struct Contato contato;
+    char nome[50];
+    int flag = 1;
+    FILE *arquivo_temporario;
+
+
+    freopen("contatos.dat", "rb", arquivo);
+    arquivo_temporario = fopen("tmp.dat", "wb");
+
+    if(arquivo_temporario == NULL || arquivo == NULL) {
+        printf("Erro ao abrir arquivo\n");
+        return;
+    }
+
+    printf("\nInsira o nome do contato que deseja remover: ");
+    scanf(" %[^\n]s", nome);
+
+    while (fread(&ampcontato, sizeof(struct Contato), 1, arquivo) != 0) {
+        if (strcmp(contato.nome, nome) == 0) {
+            printf("\nContato encontrado e removido\n");
+            flag = 0;
+        }
+        else {
+            fwrite(&ampcontato, sizeof(struct Contato), 1, arquivo_temporario);
+        }
+    }
+
+    if(flag)
+    printf("\nContato nao foi encontrado\n");
+
+    fclose(arquivo);
+    fclose(arquivo_temporario);
+
+    remove("contatos.dat");
+    rename("tmp.dat", "contatos.dat");
+
+}
+
+void pesquisarContato(FILE *arquivo) {
+    struct Contato contato;
+    char nome[50];
+    int flag = 1;
+
+    freopen("contatos.dat", "rb", arquivo);
+
+    if(arquivo == NULL) {
+        printf("Erro ao abrir o arquivo\n");
+        return;
+    }
+
+    printf("\nInsira o nome a pesquisar: ");
+    scanf(" %[^\n]s", nome);
+
+    while (fread(&ampcontato, sizeof(struct Contato), 1, arquivo) != 0) {
+        if (strcmp(contato.nome, nome) == 0) {
+            printf("\nContato %s encontrado:\n", nome);
+            printf("\tNome: %s\n", contato.nome);
+            printf("\tTelefone: %s\n", contato.telefone);
+            printf("\tEmail: %s\n", contato.email);
+            printf("\tAniversario: %s\n", contato.aniversario);
+            flag = 0;
+            break;
+        }
+    }
+
+    if(flag)
+        printf("\nContato nao foi encontrado\n");
+
+    fclose(arquivo);
+}
+
+void listarContatos(FILE *arquivo) {
+    struct Contato contato;
+    int i = 1;
+
+    freopen("contatos.dat", "rb", arquivo);
+
+    if(arquivo == NULL) {
+        printf("Erro ao abrir o arquivo\n");
+        return;
+    }
+
+    while (fread(&ampcontato, sizeof(struct Contato), 1, arquivo) != 0) {
+        printf("\nContato %d:\n", i);
+        printf("\tNome: %s\n", contato.nome);
+        printf("\tTelefone: %s\n", contato.telefone);
+        printf("\tEmail: %s\n", contato.email);
+        printf("\tAniversario: %s\n", contato.aniversario);
+        i++;
+    } ;
+
+    fclose(arquivo);
 }
 </code></pre>
         </article>
