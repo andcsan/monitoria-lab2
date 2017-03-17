@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>UFGD - Laborátorio de Programação 2</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.8.0/styles/default.min.css">
+
+    <style media="screen">
+        body {
+            font: 18px Cambria, Arial, sans-serif;
+        }
+        code {
+            font-size: 12px;
+        }
+        header.main-header {
+            text-align: center;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        article {
+            overflow: auto;
+            border-bottom: 1px solid #d0d0d0;
+            margin: 5px;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .wrapper {
+            margin: auto;
+            width: 80%;
+            padding: 10px;
+        }
+        p {
+            text-align: justify;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function changeDisplay(divid, btid) {
+            var display = document.getElementById(divid).style.display;
+            if(display == "none") {
+                document.getElementById(divid).style.display = "block";
+                document.getElementById(btid).innerHTML = "Ocultar solução";
+            } else {
+                document.getElementById(divid).style.display = "none";
+                document.getElementById(btid).innerHTML = "Exibir solução";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <h1>Universidade Federal da Grande Dourados</h1>
+            <h4>Sistemas de Informação</h4>
+            <h4>Laboratório de Programação II</h4>
+            <h5>Programa de Monitoria</h5>
+        </header>
+
+        <article>
+            <h3>Projeto Pacman</h3>
+            <h4>INTRODUÇÃO</h4>
+            <p>Este guia destina-se ao alunos de Sistemas de Informações que estão com dificuldades em concluir o projeto final da discplina de Laboratório de Programação II. Alunos da disciplina de Laborátorio de Programação I também poderão utilizar o guia para entender melhor o funcionamento geral do projeto, embora no mesmo sejam utilizados conceitos ainda não abordados na disciplina de LAB I.</p>
+            <p>A proposta deste guia é abordar as etapas mais complicadas no processo de desenvolvimento do Projeto Pacman, não exibindo soluções prontas, mas sim orientando os alunos sobre quais algoritmos ou estruturas podem ser implementadas. Entre as etapas de maior dificuldade que serão abordadas neste guia, podemos citar: a entrada do usuário que exige a não-interrupção da execução, movimentação dos personagens, algoritmo de busca, mapa, colisões, entre outros.</p>
+            <p>Como forma de aprimorar o aprendizado da disciplina, grande parte do código desenvolvido neste guia utiliza conceitos do conteúdo visto em sala de aula, como arquivos, ponteiros, recursão e os conceitos de fila, pilha e lista.</p>
+
+            <h4>ESTRUTURANDO O PROJETO</h4>
+            <p>Uma das etapas mais importantes no desenvolvimento do projeto é a modularização das funções. Evite deixar grande parte do seu código na função main(), pois isso o torna massante e complica a leitura do mesmo. Um código bem modularizado facilita a busca de erros e torna sua leitura muito mais fácil.</p>
+            <p>Em jogos que exigem interação em tempo real com o usuário, podemos dividir o programa em algumas estruturas básica:</p>
+            <ol>
+                <li>Entrada do usuário (input): podemos ter um módulo reponsável apenas por fazer o processamento das entradas do usuário. Podemos, por exemplo, validar se a entrada é permitida para o jogo. É importante que esta fução não interrompa a interação com o programa, isto é, que ele não fique aguardando a entrada do usuário. Funções como scanf() não permitem fazer essa tarefa. Posteriormente, veremos como implementar esse módulo utilizando a função kbhit(), da biblioteca conio.h </li>
+                <li>Processamento (update): um módulo de processamento é responsável por fazer toda a lógica do jogo, como colisões, contagem de score, atualização de posições das entidades, temporização, entre outros.</li>
+                <li>Desenho (render): neste módulo, iremos fazer toda a parte de desenho do jogo. Será imprimido o mapa, pílulas, entidades e informações do jogo (HUD)</li>
+            </ol>
+            <p>Como vimos, é importante modularizar o programa para facilitar a programação. Separamos as partes de entrada com o usuário da parte de processamento e funções de desenho do processamento. Evitamos dessa forma que nosso código fique com etapas misturadas e confuso.</p>
+
+            <h4>Módulo de entrada</h4>
+            <p>O processamento do jogo Pacman não deve ser interrompido para esperar a entrada do usuário. Se fosse necessário aguardar a entrada o usuário, o pacman e todos os fantasmas permaneceriam congelados até que o usuário informasse o próximo movimento do Pacman. Para resolver esse problema, podemos usar a função kbhit() da biblioteca conio. O código abaixo demonstra como pode ser feito o módulo de entrada.</p>
+<pre><code class="hljs cpp">#include &ltconio.h>
+
+char entrada(char ch) {
+    char in;
+
+    if (kbhit())
+    {
+        in = getch();
+        return in;
+    }
+
+    else
+    {
+        return ch;
+    }
+}
+</code></pre>
+            <p>A função kbhit() retorna o valor 1 caso existam valores no buffer do teclado, porém ela não faz uso deles, apenas verifica sua existencia. Caso existam dados no buffer, significa que o usuário pressionou alguma tecla, portanto devemos coletá-la. Entretanto, caso a função entrada() seja chamada e o usuário não tenha digitado nada, devemos retornar o valor antigo da varíavel de controle de entrada, passando-a como paramêtro e retornando-a caso nenhuma tecla tenha sido apertada. O código abaixo demonstra um exemplo de como a função pode ser utilizada: </p>
+<pre><code class="hljs cpp">#include &ltconio.h>
+
+int main() {
+
+    char controleEntrada;
+
+    // LOOP PRINCIPAL DO JOGO
+    while (1)
+    {
+        // A variável controleEntrada irá receber um novo valor caso o usuário pressione alguma tecla.
+        // Caso nenhuma tecla tenha sido pressionada, o seu valor não se altera.
+        // A função não interrompe a execução do programa.
+        controleEntrada = entrada(controleEntrada);
+
+        processaJogo();
+
+        desenhaJogo();
+    }
+
+    return 0;
+}
+
+</code></pre>
+
+        
+
+        </article>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
